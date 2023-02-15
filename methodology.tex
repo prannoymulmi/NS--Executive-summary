@@ -1,0 +1,53 @@
+\chapter{Methodology}
+\section{Threat Modeling}
+Threat modeling is a technique that allows us to detect and address top threats that can have a significant impact on the application \citep{threat_modeling}. Similarly, this web application uses the STRIDE threat model to discover threats. This model is used as it is one of the most mature threat analysis methods adopted by Microsoft \citep[p.~1]{shevchenko2018threat}. The threats listed in the table will be tested against the system to detect if the vulnerabilities exist.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=420px]{pics/dfd.png}
+\caption{DFD level 0 for the CMS system}\label{fig:dfd}
+\end{figure}
+
+Using the DFD, we can list out some threats using the STRIDE (Spoofing, Tampering, Redupation, Information Disclosure, Denial of Service, and Elevation of Privilege) \citep[p.~2]{stride}.
+
+\begingroup
+\centering
+\setlength{\tabcolsep}{6.5pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.8} % Default value: 1
+\begin{longtable}{ |p{7cm}| p{8cm} |}
+\caption{Spoofing Mitigations and threats}
+    \label{table:spoofing}
+\hline
+\textbf{STRIDE} & \textbf{Threats}\\
+\hline
+Spoofing & \begin{enumerate}
+    \item DNS spoofing allowing to redirect to a malicious site.
+    \item Ip Spoofing \citep[p.~2]{ip_spoofing}
+\end{enumerate} \\
+\hline
+Tampering & \begin{enumerate}
+    \item Upload malicious files.
+    \item Cross-Site Request Forgery. \citep[p.~538]{crsf}
+\end{enumerate} \\
+\hline
+Repudiation & \begin{enumerate}
+    \item Malicious activities are not tracked.
+\end{enumerate} \\
+\hline
+Information Disclosure & \begin{enumerate}
+    \item SQL Injection into the database.
+    \item Various network information is public.
+\end{enumerate} \\
+\hline
+Denial of Service & \begin{enumerate}
+    \item The CMS site is hit with a DoS attack.
+\end{enumerate} \\
+\hline
+Elevation of Privileges & \begin{enumerate}
+    \item Unauthorized users with admin privileges are added.
+\end{enumerate} \\
+\hline
+\end{longtable}
+\endgroup
+
+\section{Vulnerability Assessment}
