@@ -1,10 +1,10 @@
 \chapter{Methodology}
 \section{Threat Modeling}
-Threat modeling is a technique that allows us to detect and address top threats that can have a significant impact on the application \citep{threat_modeling}. Similarly, this web application uses the STRIDE threat model to discover threats. This model is used as it is one of the most mature threat analysis methods adopted by Microsoft \citep[p.~1]{shevchenko2018threat}. The threats listed in the table will be tested against the system to detect if the vulnerabilities exist.
+Threat modeling is a technique that allows us to detect and address top threats that can have a significant impact on the application \citep{threat_modeling}. Similarly, this web application uses the STRIDE threat model to discover threats. This model is used as it is one of the most mature threat analysis methods adopted by Microsoft \citep[p.~1]{shevchenko2018threat}. Similarly, this web application uses the STRIDE threat model to discover threats. The threats listed in the table will be tested against the system to detect if the vulnerabilities exist.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=420px]{pics/dfd.png}
+\includegraphics[width=380px]{pics/dfd.png}
 \caption{DFD level 0 for the CMS system}\label{fig:dfd}
 \end{figure}
 
@@ -18,6 +18,7 @@ Using the DFD, we can list out some threats using the STRIDE (Spoofing, Tamperin
 \caption{Spoofing Mitigations and threats}
     \label{table:spoofing}
 \hline
+\rowcolor{grey!15}
 \textbf{STRIDE} & \textbf{Threats}\\
 \hline
 Spoofing & \begin{enumerate}
@@ -51,3 +52,20 @@ Elevation of Privileges & \begin{enumerate}
 \endgroup
 
 \section{Vulnerability Assessment}
+For the vulnerability assessment, the automated tools mentioned in the baseline analysis were used to scan for known threats and misconfigurations of the CMS system.
+
+\begingroup
+\centering
+\setlength{\tabcolsep}{6.5pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.8} % Default value: 1
+\begin{longtable}{ |p{7cm}| p{8cm} |}
+\caption{Spoofing Mitigations and threats}
+    \label{table:spoofing}
+\hline
+\rowcolor{grey!15}
+\textbf{STRIDE}  & \textbf{Threats}\\
+\hline
+TEST &  TEST\\
+\hline
+\end{longtable}
+\endgroup
