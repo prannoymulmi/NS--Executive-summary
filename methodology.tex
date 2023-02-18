@@ -1,21 +1,14 @@
 \chapter{Methodology}
 \section{Threat Modeling}
 Threat modeling is a technique that allows us to detect and address top threats that can have a significant impact on the application \citep{threat_modeling}. Similarly, this web application uses the STRIDE threat model to discover threats. This model is used as it is one of the most mature threat analysis methods adopted by Microsoft \citep[p.~1]{shevchenko2018threat}. Similarly, this web application uses the STRIDE threat model to discover threats. The threats listed in the table will be tested against the system to detect if the vulnerabilities exist.
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=380px]{pics/dfd.png}
-\caption{DFD level 0 for the CMS system}\label{fig:dfd}
-\end{figure}
-
-Using the DFD, we can list out some threats using the STRIDE (Spoofing, Tampering, Redupation, Information Disclosure, Denial of Service, and Elevation of Privilege) \citep[p.~2]{stride}.
+Using the DFD (see figure \ref{fig:dfd}), we can list out some threats using the STRIDE (Spoofing, Tampering, Redupation, Information Disclosure, Denial of Service, and Elevation of Privilege) \citep[p.~2]{stride}.
 
 \begingroup
 \centering
 \setlength{\tabcolsep}{6.5pt} % Default value: 6pt
 \renewcommand{\arraystretch}{1.8} % Default value: 1
 \begin{longtable}{ |p{7cm}| p{8cm} |}
-\caption{Spoofing Mitigations and threats}
+\caption{STRIDE Modeling}
     \label{table:spoofing}
 \hline
 \rowcolor{grey!15}
@@ -51,6 +44,13 @@ Elevation of Privileges & \begin{enumerate}
 \end{longtable}
 \endgroup
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{pics/dfd.png}
+\caption{DFD level 0 for the CMS system}\label{fig:dfd}
+\end{figure}
+
+
 \section{Vulnerability Assessment}
 For the vulnerability assessment, the automated tools mentioned in the baseline analysis were used to scan for known threats and misconfigurations of the CMS system.
 
@@ -59,13 +59,21 @@ For the vulnerability assessment, the automated tools mentioned in the baseline 
 \setlength{\tabcolsep}{6.5pt} % Default value: 6pt
 \renewcommand{\arraystretch}{1.8} % Default value: 1
 \begin{longtable}{ |p{7cm}| p{8cm} |}
-\caption{Spoofing Mitigations and threats}
+\caption{Results from the tools used in the assessment}
     \label{table:spoofing}
 \hline
 \rowcolor{grey!15}
-\textbf{STRIDE}  & \textbf{Threats}\\
+\textbf{Tool}  & \textbf{Result}\\
 \hline
-TEST &  TEST\\
+Cmsmap &  \begin{enumerate}
+    \item CMS Detected: Joomla 4.1.2
+    \item PHP Version: PHP/7.4.33
+\end{enumerate}\\
+\hline
+Metasploit \& Nmap &  \begin{enumerate}
+    \item Discovered network misconfigurations.
+    \item Tested against major CRM threats (i.e., SQL injection, XSS, RCE) mentioned in the baseline analysis 
+\end{enumerate}\\
 \hline
 \end{longtable}
 \endgroup
