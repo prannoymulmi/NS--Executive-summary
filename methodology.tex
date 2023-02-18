@@ -46,19 +46,20 @@ Elevation of Privileges & \begin{enumerate}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=\textwidth]{pics/dfd.png}
+\includegraphics[width=\textwidth, height=400px]{pics/dfd.png}
 \caption{DFD level 0 for the CMS system}\label{fig:dfd}
 \end{figure}
 
 
 \section{Vulnerability Assessment}
-For the vulnerability assessment, the automated tools mentioned in the baseline analysis were used to scan for known threats and misconfigurations of the CMS system.
+For the vulnerability assessment, the automated tools mentioned in the baseline analysis were used to scan for known threats and misconfigurations of the CMS system. Additionally, the assessment and reconnaissance are performed using the MITRE Enterprise ATT\&CK matrix \citep{mitre_url}, as this model describes the adversary behaviors that measure the system's resilience at an enterprise level \citep[p.~158]{xiong2022cyber}.
 
+\newpage
 \begingroup
 \centering
 \setlength{\tabcolsep}{6.5pt} % Default value: 6pt
 \renewcommand{\arraystretch}{1.8} % Default value: 1
-\begin{longtable}{ |p{7cm}| p{8cm} |}
+\begin{longtable}{ |p{5cm}| p{10cm} |}
 \caption{Results from the tools used in the assessment}
     \label{table:spoofing}
 \hline
@@ -66,13 +67,20 @@ For the vulnerability assessment, the automated tools mentioned in the baseline 
 \textbf{Tool}  & \textbf{Result}\\
 \hline
 Cmsmap &  \begin{enumerate}
-    \item CMS Detected: Joomla 4.1.2
-    \item PHP Version: PHP/7.4.33
+    \item CMS Detected version detected.
+    \item PHP version detected.
 \end{enumerate}\\
 \hline
 Metasploit \& Nmap &  \begin{enumerate}
     \item Discovered network misconfigurations.
-    \item Tested against major CRM threats (i.e., SQL injection, XSS, RCE) mentioned in the baseline analysis 
+    \item Tested against major CRM threats (i.e., SQL injection, XSS, RCE, Directory traversal) mentioned in the baseline analysis.
+\end{enumerate}\\
+\hline
+DNSrecon &  \begin{enumerate}
+    \item Performed reverse lookup.
+    \item Performed DNS Zone transfer.
+    \item Performed Cache Snooping.
+    \item Performed Zone walking.
 \end{enumerate}\\
 \hline
 \end{longtable}
