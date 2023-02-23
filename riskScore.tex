@@ -1,7 +1,7 @@
 \chapter{Risk Rating System}
 
 The Common Vulnerability Scoring System v3.0 (CVSS) is taken as a baseline for the assessment to characterize and measure some of the vulnerability's potential impact on the CMS system \citep[p.~516]{cvss}. 
-The rating is not solely based on these metrics due to the limiting factor that CVSS does not entirely reflect the actual risk in the organization \citep[p.~7]{limitations_cvss}. However, since CVSS has been adopted widely and used by many enterprises, i.e., National Vulnerability Database \citep{nist}, it is chosen to be included in the analysis. 
+The rating is not solely based on these metrics due to the limiting factor that CVSS does not entirely reflect the actual risk in the organization \citep[p.~7]{limitations_cvss}. However, since CVSS has been adopted widely and used by many enterprises, i.e., National Vulnerability Database \citep{nist}, it is chosen to be included in the analysis. The rankings are further determined based on CVSS, the probability of an attack, and the impact on the system.
 The rankings for vulnerabilities are assigned based on the score, which is as follows:
 
 
@@ -10,18 +10,18 @@ The rankings for vulnerabilities are assigned based on the score, which is as fo
 \setlength{\tabcolsep}{6.5pt} % Default value: 6pt
 \renewcommand{\arraystretch}{1.8} % Default value: 1
 \begin{longtable}{ |p{5cm}| p{10cm} |}
-\caption{Severity Rankings}
+\caption{Severity Rankings descriptions}
     \label{table:spoofing}
 \hline
 \rowcolor{grey!15}
 \textbf{Ranking}  & \textbf{Description}\\
 \hline
-\cellcolor{red!95} Critical  & These vulnerabilities considerably harm the organization and can cause the loss of critical systems and data. They are relatively more manageable for the attacker to gain access to the system. Therefore, these threats require immediate attention.\\
+\cellcolor{red!95} Critical  & These vulnerabilities considerably harm the organization and can cause the loss of critical systems and data. They are relatively more manageable for the attacker to access the system. Therefore, these threats require immediate attention.\\
 \hline
-\cellcolor{red!70} High  &  A high severity also requires subsequent evaluation and remediation. Similar to the critical threat, they might lead to the loss of critical systems, and access to privileged systems. However are more tougher to exploit.\\
+\cellcolor{red!70} High  &  A high severity also requires subsequent evaluation and remediation. Like the critical threat, they might lead to the loss of critical systems and access to privileged systems. However, they are tougher to exploit.\\
 \hline
 \hline
-\cellcolor{yellow!95} Medium &  A medium vulnerability requires the resolution to be carried out quickly after the critical and high alerts are remidiated. However, these threats are not an immediate danger to the organization but might allow the attacker to gain more information about the system.\\
+\cellcolor{yellow!95} Medium &  A medium vulnerability requires the resolution to be carried out quickly after the critical and high alerts are remediated. However, these threats are not an immediate danger to the organization but might allow the attacker to gain more information about the system.\\
 \hline
 \cellcolor{grey!55} Info  &  These threats do not present any direct threats to the organization but might help to improve the overall security standards.\\
 \hline

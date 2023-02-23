@@ -1,0 +1,85 @@
+\chapter{Findings}
+Testing discovered 21 vulnerabilities and CVEs in the system, and Table \ref{table:key_findings} summarizes the key findings.
+
+\begingroup
+\centering
+\setlength{\tabcolsep}{6.5pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.8} % Default value: 1
+\begin{longtable}{ |p{5cm}| p{10cm} |}
+\caption{Severity Rankings}
+    \label{table:rankings}
+\hline
+\rowcolor{grey!15}
+\textbf{Ranking}  & \textbf{Count}\\
+\hline
+Critical  & 1\\
+\hline
+High  & 8\\
+\hline
+Medium  & 4\
+\hline
+Info  & 2\\
+\hline
+\hline
+\textbf{Total}  & \textbf{15}\\
+\hline
+\end{longtable}
+\endgroup
+\newpage
+
+\subsubsection{Graphs}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{pics/rankings.png}
+\caption{Distribution of risks}\label{fig:bar_risks}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{pics/risk_cat.png}
+\caption{Risk Catagories Count}\label{fig:bar_risks}
+\end{figure}
+
+\section{Key Findings}
+\begingroup
+\centering
+\setlength{\tabcolsep}{6.5pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.8} % Default value: 1
+\begin{longtable}{ |p{1.5cm}| p{6cm}|p{1.3cm}|p{5cm}|}
+\caption{Key Findings ordered by Priority}
+    \label{table:key_findings}
+\hline
+\rowcolor{grey!15}
+\textbf{Risk}  & \textbf{Finding}& \textbf{Count}& \textbf{Solution}\\
+\hline
+\cellcolor{red!95} Critical  & Externally exposed Network Resources 
+\newline (Configuration Management). & 1 &
+\\
+\hline
+\cellcolor{red!95} Critical  & Brute force of user credentials are possible for databases as the ports are open and not protected. 
+\newline (Access Control) &1&
+\\
+\hline
+\cellcolor{red!70} High  & Insecure versions of database containing vulnerabilities.
+\newline (Patch Management).& 7 &
+\\
+\hline
+\cellcolor{red!70} High  & Malicious Code injection possible 
+\newline (System Integrity)& 2 &
+\\
+\hline
+\cellcolor{yellow!95} Medium  & Ip spoofing / DNS server spoofing possible
+\newline (System Integrity) .& 2 &
+\\
+\hline
+\cellcolor{yellow!95} Medium  & Server and application version is public 
+\newline(Configuration Management).& 2 &
+\\
+\hline
+\cellcolor{grey!55} Info  & Application discloses system information
+\newline (Configuration Management).& 1 &
+\\
+\hline
+\end{longtable}
+\endgroup
+\newpage
