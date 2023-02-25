@@ -46,13 +46,18 @@ Elevation of Privileges & \begin{enumerate}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=\textwidth, height=400px]{pics/dfd.png}
+\includegraphics[width=\textwidth, height=450px]{pics/dfd.png}
 \caption{DFD level 0 for the CMS system}\label{fig:dfd}
 \end{figure}
 
 
 \section{Vulnerability Assessment}
-For the vulnerability assessment, the automated tools mentioned in the baseline analysis were used to scan for known threats and misconfigurations of the CMS system. Additionally, the assessment and reconnaissance are performed using the MITRE Enterprise ATT\&CK matrix \citep{mitre_url}, as this model describes the adversary behaviors that measure the system's resilience at an enterprise level \citep[p.~158]{xiong2022cyber}.
+For the vulnerability assessment, the automated tools (see table \ref{table:tools}) mentioned in the baseline analysis were used to scan for known threats and misconfigurations of the CMS system using the adversary behaviors defined in MITRE Enterprise ATT\&CK matrix \citep[p.~158]{xiong2022cyber}.
+
+\begin{comment}
+Additionally, the assessment and reconnaissance are performed using the MITRE Enterprise ATT\&CK matrix \citep{mitre_url}, as this model describes the adversary behaviors that measure the system's resilience at an enterprise level \citep[p.~158]{xiong2022cyber}.
+\end{comment}
+
 
 \newpage
 \begingroup
@@ -61,7 +66,7 @@ For the vulnerability assessment, the automated tools mentioned in the baseline 
 \renewcommand{\arraystretch}{1.8} % Default value: 1
 \begin{longtable}{ |p{5cm}| p{10cm} |}
 \caption{Results from the tools used in the assessment}
-    \label{table:spoofing}
+    \label{table:tools}
 \hline
 \rowcolor{grey!15}
 \textbf{Tool}  & \textbf{Result}\\
@@ -77,9 +82,9 @@ Metasploit \& Nmap &  \begin{enumerate}
 \end{enumerate}\\
 \hline
 DNSrecon &  \begin{enumerate}
-    \item Performed reverse lookup.
+    \item Performed reverse lookup and CDN detection.
     \item Performed DNS Zone transfer.
-    \item Performed Cache Snooping.
+    \item Performed Cache Snooping and DNS Recursion.
     \item Performed Zone walking.
 \end{enumerate}\\
 \hline
