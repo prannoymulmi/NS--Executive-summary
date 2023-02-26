@@ -1,7 +1,7 @@
 \chapter{Methodology}
 \section{Threat Modeling}
-Threat modeling is a technique that allows us to detect and address top threats that can have a significant impact on the application \citep{threat_modeling}. Similarly, this web application uses the STRIDE threat model to discover threats. This model is used as it is one of the most mature threat analysis methods adopted by Microsoft \citep[p.~1]{shevchenko2018threat}. Similarly, this web application uses the STRIDE threat model to discover threats. The threats listed in the table will be tested against the system to detect if the vulnerabilities exist.
-Using the DFD (see figure \ref{fig:dfd}), we can list out some threats using the STRIDE (Spoofing, Tampering, Redupation, Information Disclosure, Denial of Service, and Elevation of Privilege) \citep[p.~2]{stride}.
+Threat modeling is a technique that allows us to detect and address top threats that can have a significant impact on the application \citep{threat_modeling}. Similarly, this web application uses the STRIDE threat model to discover threats. The threats in the table will be tested against the system to detect any vulnerabilities.
+Using the DFD (see figure \ref{fig:dfd}), we can list some threats utilizing the model.
 
 \begingroup
 \centering
@@ -46,7 +46,7 @@ Elevation of Privileges & \begin{enumerate}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=\textwidth, height=450px]{pics/dfd.png}
+\includegraphics[width=\textwidth, height=280px]{pics/dfd.png}
 \caption{DFD level 0 for the CMS system}\label{fig:dfd}
 \end{figure}
 
@@ -59,7 +59,7 @@ Additionally, the assessment and reconnaissance are performed using the MITRE En
 \end{comment}
 
 
-\newpage
+
 \begingroup
 \centering
 \setlength{\tabcolsep}{6.5pt} % Default value: 6pt
@@ -90,3 +90,54 @@ DNSrecon &  \begin{enumerate}
 \hline
 \end{longtable}
 \endgroup
+
+\section{GDPR Analysis}
+Using the GDPR compliance checklist, the website is evaluated for compliance with GDPR \citep{gdpr_checklist}. Failure to comply with GDPR rules with severe violations can be fined up to 4\% of the total turnover, or €20 million \citep[p.~32]{eu_fines}. Table \ref{table:gdpr} summarizes the discovered GDPR compliance results for the CMS system.
+
+\newpage
+\begingroup
+\centering
+\setlength{\tabcolsep}{6.5pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.8} % Default value: 1
+\begin{longtable}{ |p{3cm}|p{5cm}| p{7cm} |}
+\caption{GDPR Assessment}
+    \label{table:gdpr}
+\hline
+\rowcolor{grey!15}
+\textbf{Article GDPR} & \textbf{Name}  & \textbf{Status}\\
+\hline
+Art.3 & Representative of Controller in the European Union  &  \begin{enumerate}
+    \item A representative in the European Union is required as the CRM is hosted in the United States and processes personal data. The presence of the officer is unknown.
+\end{enumerate}\\
+\hline
+Art.12 & Transparent privacy policy use, with the subject's consent.  &  \begin{enumerate}
+    \item A consent layer for informing users of the information the cookies collect is missing.
+    \item Granular consent is also not present.
+    \item Privacy policy of the website link is not present.
+\end{enumerate}\\
+\hline
+Art.25 & Data Protection by Design and default.  &  \begin{enumerate}
+    \item The databases containing personal data are available on the public internet, creating a risk of personal data breaches.
+    \item The accounts are protected with an authentication mechanism.
+\end{enumerate}\\
+\hline
+Art.32 & Security of Processing.  &  
+\begin{enumerate}
+    \item Unencrypted email servers with ports (110, 143, 465, 587, and 2525) are used and are susceptible to man-in-the- middle-attacks.
+    \item The CRM https website uses SSL-encrypted connections. 
+\end{enumerate}\\
+\hline
+Art.33 \& 34 & Notification of breaches.  &  
+\begin{enumerate}
+    \item Logging and monitoring to detect unusual behaviors are required but cannot be confirmed.
+    \item Incident response within 72 hours of a breach is required but cannot be confirmed.
+\end{enumerate}\\
+\hline
+Art.38 & Presence of Data Protection Officer.  &  
+\begin{enumerate}
+    \item A data protection officer handling critical breach incidents is required. The availability of the DPO is unknown.
+\end{enumerate}\\
+\hline
+\end{longtable}
+\endgroup
+
