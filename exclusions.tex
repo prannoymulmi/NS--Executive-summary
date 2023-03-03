@@ -1,9 +1,8 @@
 \chapter{Limitations}
-The assessment consisted of a few constraints as the project is shared amongst many peers, and the internal information is not disclosed. The following exclusions are taken into account for this report.
+The assessment consisted of a few constraints as the project.  The following limitations were encountered during the vulnerability assessment.
 \begin{enumerate}
-    \item Denial of Service (DoS) attacks are avoided, as almost any website is susceptible to such attacks.
-    \item Phishing and social engineering are also not used, as admin credentials are unavailable.
-    \item Physical on-site assessments are also out of scope, as the data centers are out of reach for us.
-    \item All kinds of intrusive testing,i.e., SQL injections and malware uploads, are also out-of-scope, as there are no legal permissions to carry out such tests.
+    \item Evaluating against the frameworks, the points requiring internal organizational knowledge could not be verified, i.e., backups exist, data encryption at rest, and the presence of Logs and SIEM. Therefore the system could not be evaluated completely 
+    \item On-site assessments could not be done, as the data centers are physically out of reach for us.
+    \item All intrusive testing,i.e., SQL injections and malware uploads, to verify the exploits could not be carried out, as there are no legal permissions to carry out such tests.
     \item Ping-based tests are avoided, as the site is a shared hosting consisting of other CMS sites with the IP, which would not bring any more useful information.
 \end{enumerate}

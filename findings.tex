@@ -1,6 +1,6 @@
 \chapter{Findings}
-Testing discovered 31 vulnerabilities and CVEs in the system, and Table \ref{table:key_findings} summarizes the key findings.
-
+Testing discovered 9 key issues in the system according to business risk, and Figure \ref{fig:bar_rankings} depicts the total number of issues according to their order.
+\begin{comment}
 \begingroup
 \centering
 \setlength{\tabcolsep}{6.5pt} % Default value: 6pt
@@ -12,75 +12,80 @@ Testing discovered 31 vulnerabilities and CVEs in the system, and Table \ref{tab
 \rowcolor{grey!15}
 \textbf{Ranking}  & \textbf{Count}\\
 \hline
-Critical  & 1\\
+Critical  & 2\\
 \hline
-High  & 9\\
+High  & 10\\
 \hline
 Medium  & 20\
 \hline
 Info  & 1\\
 \hline
 \hline
-\textbf{Total}  & \textbf{31}\\
+\textbf{Total}  & \textbf{33}\\
 \hline
 \end{longtable}
 \endgroup
 \newpage
+\end{comment}
 
-\subsubsection{Graphs}
 \begin{figure}[h!]
 \centering
 \includegraphics[width=\textwidth]{pics/rankings.png}
-\caption{Distribution of risks}\label{fig:bar_risks}
+\caption{Distribution of risks}\label{fig:bar_rankings}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[htp!]
 \centering
 \includegraphics[width=\textwidth]{pics/risk_cat.png}
 \caption{Risk Catagories Count}\label{fig:bar_risks}
 \end{figure}
 
+\newpage
 \section{Key Findings}
 \begingroup
 \centering
 \setlength{\tabcolsep}{6.5pt} % Default value: 6pt
 \renewcommand{\arraystretch}{1.8} % Default value: 1
-\begin{longtable}{ |p{1.5cm}| p{6cm}|p{1.3cm}|p{5cm}|}
+\begin{longtable}{ |p{1.5cm}| p{6cm}|p{6.3cm}|}
 \caption{Key Findings ordered by Priority}
     \label{table:key_findings}
 \hline
 \rowcolor{grey!15}
-\textbf{Risk}  & \textbf{Finding}& \textbf{Count}& \textbf{Solution}\\
+\textbf{Risk}  & \textbf{Finding}& \textbf{Recommendation}\\
 \hline
 \cellcolor{red!95} Critical  & Externally exposed Network Resources, i.e., databases, FTP, DNS servers. Information theft and DoS attack are highly likely.
-\newline (Configuration Management). & 1 & Ports 21, 3306, and 5432 should be closed from the public internet as they are not necessary to be open for running the CMS. CDN should be used to relieve the load on the servers.
+ & Ports 21, 3306, and 5432 should be closed from the public internet as they are not necessary to be open for running the CMS. CDN should be used to relieve the load on the servers.
+\\
+\hline
+\cellcolor{red!95} Critical  & Privacy policy and cookie confirmation for users not available, therefore breaking GDPR directive. & A detailed cookie consent form and privacy policy, that a user can explicitly confirm to use the site should be implemented.
 \\
 \hline
 \cellcolor{red!70} High  & Insecure database versions  containing multiple CVEs. This can lead to personal data theft.
-\newline (Patch Management).& 7 & The vulnerable versions of database must be updated to a secure one. In addition, regular security automatic scans with dynamic and static application testing should be carried out.
+ & The vulnerable versions of the database must be updated to a secure one. In addition, regular security automatic scans with dynamic and static application testing should be carried out.
 \\
 \hline
-\cellcolor{red!70} High  & Malicious Code injection possible(XSS, CSRF forgery) 
-\newline (System Integrity)& 2 & The HTML inputs should be sanitized, set Content-security policy header, and CSRF tokens \citep[p.~75]{xss_crsf}.
+\cellcolor{red!70} High  & Mail servers are unencrypted and could be intercepted, leading to a leak of sensitive information. & The mail servers should use TLSv1.3 to encrypt the traffic from getting intercepted. 
 \\
 \hline
-\cellcolor{yellow!95} Medium  & Ip spoofing, DNS server spoofing and Cache Poisoning possible.
-\newline (System Integrity) .& 2 & Implement DNSSEC to protect the integrity of the server and turn off DNS recursion in the Bind server. \citep[p.~38]{guo2006spoof}
+\cellcolor{red!70} High  & Malicious Code injection possible(XSS, CSRF forgery) & The HTML inputs should be sanitized, set Content-security policy header, and CSRF tokens \citep[p.~75]{xss_crsf}.
 \\
 \hline
-\cellcolor{yellow!95} Medium  & Server and application version is public 
-\newline(Configuration Management).& 2 & Do not make server and application versions public information.
+\cellcolor{yellow!95} Medium  & Ip spoofing, DNS server spoofing, and Cache Poisoning possible.
+& Implement DNSSEC to protect the integrity of the server and turn off DNS recursion in the Bind server. \citep[p.~38]{guo2006spoof}
 \\
 \hline
-\cellcolor{yellow!95} Medium  & DNS server is outdated, can cause an outage of the service because of present vulnerabilities.
-\newline (Patch management).& 16 & Update DNS bind to v9.18.12.
+\cellcolor{yellow!95} Medium  & Server and application version is public.& Do not make server and application versions public information.
 \\
 \hline
-\cellcolor{grey!55} Info  & Application discloses system information
-\newline (Configuration Management).& 1 & Only generic errors should be outputted, and application information in error should be removed.
+\cellcolor{yellow!95} Medium  & DNS server is outdated and can cause an outage of the service because of present vulnerabilities..& Update DNS bind to v9.18.12.
+\\
+\hline
+\cellcolor{grey!55} Info  & Mail server is not protected against spam and phishing.& A DMARC record in the DNS for the mail server should be included, which can validate the emails are from a genuine sender
 \\
 \hline
 \end{longtable}
 \endgroup
 
-\section{GDPR}
+
+\section{Conclusion}
+Looking at table \ref{table:key_findings}, it can be concluded that the CMS system has severe critical flaws such as non-GDPR compliance because of missing privacy policies and consent, databases that might contain sensitive personal data are with open ports in the public internet. These errors pose a significant danger to the security operations of the system from attackers. Additionally, since the system is not GDPR conform, therefore is liable to be fined for not imposing the required elements. Herefore, the website is not production ready without resolving the high and critical issues from the findings.
