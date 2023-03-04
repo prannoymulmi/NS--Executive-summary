@@ -55,6 +55,11 @@
 \usepackage[hidelinks]{hyperref} %https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks
 
 \newcolumntype{P}[1]{>{\endgraf\vspace*{-\baselineskip}}p{#1}}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
+
 %for chapter spaces
 \begin{document}
 
@@ -82,7 +87,7 @@
 %\include{exclusions}
 \include{methodology}
 %\include{riskScore}
-\include{findings}
+%\include{findings}
 \include{conclusion}
 \appendix 
 

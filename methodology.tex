@@ -1,4 +1,4 @@
-\chapter{Methodology}
+\chapter{Analysis}
 \section{Summary of the Scope}
 The scope comprised the examination of the network resources and vulnerabilities present in the web application. The resources were assessed using the following angles of attack:
 \begin{itemize}
@@ -7,7 +7,7 @@ The scope comprised the examination of the network resources and vulnerabilities
 \end{itemize}
 
 \section{Threat Modeling}
-Threat modeling is a technique that allows us to detect and address top threats that can have a significant impact on the application \citep{threat_modeling}. Similarly, this web application uses the STRIDE threat model to discover threats. The threats in the table will be tested against the system to detect any vulnerabilities.
+Threat modeling is a technique that allows us to detect and address top threats that can have a significant impact on the application \citep{threat_modeling}, also used in this assessment. The threats in the table will be tested against the system to detect any vulnerabilities.
 Using the DFD (see figure \ref{fig:dfd}), we can list some threats utilizing the model.
 
 \begingroup
@@ -65,13 +65,13 @@ Elevation of Privileges &
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=\textwidth, height=280px]{pics/dfd.png}
+\includegraphics[width=\textwidth, height=420px]{pics/dfd.png}
 \caption{DFD level 0 for the CMS system}\label{fig:dfd}
 \end{figure}
 
 
 \section{Vulnerability Assessment}
-For the vulnerability assessment, the automated tools (see table \ref{table:tools}) mentioned in the baseline analysis were used to scan for known threats and misconfigurations of the CMS system using the adversary behaviors defined in MITRE Enterprise ATT\&CK matrix \citep[p.~158]{xiong2022cyber}.
+For the vulnerability assessment, the automated tools (see table \ref{table:tools}) mentioned in the baseline analysis were used to scan for known threats using the adversary behaviors defined in MITRE Enterprise ATT\&CK matrix \citep[p.~158]{xiong2022cyber}.
 
 \begin{comment}
 Additionally, the assessment and reconnaissance are performed using the MITRE Enterprise ATT\&CK matrix \citep{mitre_url}, as this model describes the adversary behaviors that measure the system's resilience at an enterprise level \citep[p.~158]{xiong2022cyber}.
@@ -109,7 +109,7 @@ DNSrecon &
 \vspace{-\baselineskip}
 \begin{enumerate}
     \item Performed reverse lookup and CDN detection.
-    \item Performed DNS Zone transfer.
+    \item Performed DNS Zone transfer \citep[p.~193]{zone_transfer}.
     \item Performed Cache Snooping and DNS Recursion.
     \item Performed Zone walking.
 \end{enumerate}\\
@@ -135,7 +135,7 @@ Using the GDPR compliance checklist, the website is evaluated for compliance wit
 Art.3 & Representative of Controller in the European Union  &
 \vspace{-\baselineskip}
 \begin{enumerate}
-    \item A representative in the European Union is required as the CRM is hosted in the United States and processes personal data. The presence of the officer is unknown.
+    \item A representative in the European Union is required as the CRM is hosted in the United States and processes personal data, which is unknown.
 \end{enumerate}\\
 \hline
 Art.12 & Transparent privacy policy use, with the subject's consent.  &  
@@ -147,11 +147,15 @@ Art.12 & Transparent privacy policy use, with the subject's consent.  &
 \end{enumerate}\\
 \hline
 Art.25 & Data Protection by Design and default.  &  
-\vspace{-\baselineskip}
-\begin{enumerate}
-    \item The databases containing personal data are available on the public internet, creating a risk of personal data breaches.
-    \item The accounts are protected with an authentication mechanism.
-\end{enumerate}\\
+The databases containing personal data are available on the public internet, creating a risk of personal data breaches.\\
+\hline
+Art.33 \& 34 & Notification of breaches.  &  
+ Logging and monitoring to detect unusual behaviors are required but cannot be confirmed.
+\\
+\hline
+Art.38 & Presence of Data Protection Officer.  &  
+ A data protection officer handling critical breach incidents is required. The availability of the DPO is unknown.
+\\
 \hline
 Art.32 & Security of Processing.  &  
 \vspace{-\baselineskip}
@@ -160,25 +164,13 @@ Art.32 & Security of Processing.  &
     \item The CRM website uses TLS-encrypted connections for data exchange. Unencrypted ports, i.e., 80 and 8080, are redirected to encrypted ones.  
 \end{enumerate}\\
 \hline
-Art.33 \& 34 & Notification of breaches.  &  
-\vspace{-\baselineskip}
-\begin{enumerate}
-    \item Logging and monitoring to detect unusual behaviors are required but cannot be confirmed.
-    \item Incident response within 72 hours of a breach is required but cannot be confirmed.
-\end{enumerate}\\
-\hline
-Art.38 & Presence of Data Protection Officer.  &  
-\vspace{-\baselineskip}
-\begin{enumerate}
-    \item A data protection officer handling critical breach incidents is required. The availability of the DPO is unknown.
-\end{enumerate}\\
-\hline
 \end{longtable}
 \endgroup
 After evaluating the CMS system with the GDPR directive (see Table \ref{table:gdpr}), it can be concluded that significant shortcomings are present in the system, which break the GDPR directive, as many required features like privacy policy, cookie consent, data protection are not adequately implemented and the company can be fined for not them.
 
 \section{CIS Analysis}
-An evaluation of the CIS v8 framework is a set of recommended actions to prevent common attacks on networks and systems. This framework is chosen as it prioritizes a simple list of steps in comparison to other frameworks, which can be easily implemented also by small and medium-sized organizations with a low budget \citep[p.~59]{CIS}. Table \ref{table:cis} summarizes the evident shortcomings of the system according to the CIS control safeguards.
+%An evaluation of the CIS v8 framework is a set of recommended actions to prevent common attacks on networks and systems. 
+An evaluation of the CIS v8 framework is chosen as it prioritizes a simple list of steps in comparison to other frameworks, which can be easily implemented also by small and medium-sized organizations with a low budget \citep[p.~59]{CIS}. Table \ref{table:cis} summarizes the evident shortcomings of the system according to the CIS control safeguards.
 
 \begin{comment}
     
@@ -203,29 +195,17 @@ An evaluation of the CIS v8 framework is a set of recommended actions to prevent
 \textbf{CIS Control}  & \textbf{Status}\\
 \hline
 Inventory and Control of Enterprise Assets  &  
-\vspace{-\baselineskip}
-\begin{enumerate} 
-    \item Unauthorized assets like databases and FTP servers are not checked regularly, as they are open to the public.
-\end{enumerate}\\
+ Unauthorized assets like databases and FTP servers are not checked regularly, as they are open to the public.\\
 \hline
 Inventory and Control of Software Assets  &  
-\vspace{-\baselineskip}
-\begin{enumerate}
-    \item Not all software components, i.e., DNS servers and databases, are up-to-date.
-    \item It is unclear if a list of authorized software that can be used exists.
-\end{enumerate}\\
+Not all software components, i.e., DNS servers and databases, are up-to-date.
+\\
 \hline
 Data Protection  &  
-\vspace{-\baselineskip}
-\begin{enumerate}
-    \item Mail and FTP servers do not use encryption in transit.
-\end{enumerate}\\
+Mail and FTP servers do not use encryption in transit.\\
 \hline
 Network Infrastructure Management  &  
-    \vspace{-\baselineskip}
-    \begin{enumerate}
-        \item Network infrastructure is not up-to-date, i.e., the DNS server is outdated and contains many vulnerabilities.
-    \end{enumerate}\\
+ Network infrastructure is not up-to-date, i.e., the DNS server is outdated and contains many vulnerabilities.\\
 \hline
 \end{longtable}
 \endgroup
@@ -238,3 +218,87 @@ The assessment consisted of a few constraints as the project. The following limi
     \item On-site assessments could not be done, as the data centers are physically out of reach for us.
     \item All intrusive testing to verify the found exploits could not be carried out, as there are no legal permissions to attack the system, leading to only assumptions about the blast radius of the vulnerabilities.
 \end{enumerate}
+
+
+
+
+
+\section{Findings}
+Testing discovered 9 key issues in the system according to business risk, and Figure \ref{fig:bar_rankings} depicts the total number of cases according to their order.
+
+\newline
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth, height=350px]{pics/rankings.png}
+\caption{Distribution of risks}\label{fig:bar_rankings}
+\end{figure}
+
+
+\newpage
+\section{Key Findings}
+
+List of security threats found in comparison to the baseline analysis are listed below:
+
+\begin{enumerate}
+    \item Phishing and social engineering of the mail servers.
+    \item Denial of service due to some CVEs in the old database versions and mitigations like CDN also not present.
+    \item Cross-Site Scripting as headers are not implemented in the CMS site.
+    \item Security misconfigurations as many ports are made public unnecessarily.
+    \item Ransomware attacks can be carried out with more ease, as important data-stores are open in public.
+\end{enumerate}
+
+\begin{comment}
+   \begin{figure}[htp!]
+\centering
+\includegraphics[width=\textwidth, height=330px]{pics/risk_cat.png}
+\caption{Risk Catagories Count}\label{fig:bar_risks}
+\end{figure} 
+\end{comment}
+
+
+\begingroup
+\centering
+\setlength{\tabcolsep}{6.5pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.8} % Default value: 1
+\begin{longtable}{ |p{1.5cm}| p{6cm}|p{6.3cm}|}
+\caption{Key Findings ordered by Priority}
+    \label{table:key_findings}
+\hline
+\rowcolor{grey!15}
+\textbf{Risk}  & \textbf{Finding}& \textbf{Recommendation}\\
+\hline
+\cellcolor{red!95} Critical  & Externally exposed Network Resources, i.e., databases, FTP, DNS servers. Information theft and DoS attacks can be performed with less effort.
+ & Ports 21, 3306, and 5432 should be closed from the public internet as they are not necessary to be open for running the CMS. %CDN should be used to relieve the load on the servers.
+\\
+\hline
+\cellcolor{red!95} Critical  & Privacy policy and cookie confirmation for users not available, therefore breaking GDPR directive. & A detailed cookie consent form and privacy policy, that a user can explicitly confirm to use the site should be implemented \citep[p.~2]{godr_cookie}.
+\\
+\hline
+\cellcolor{red!55} High  & Insecure database versions  containing multiple CVEs. This can lead to personal data theft.
+ & The vulnerable versions of the database must be updated to a secure one. In addition, regular security automatic scans with dynamic and static application testing should be carried out.
+\\
+\hline
+\cellcolor{red!55} High  & Mail servers are unencrypted and could be intercepted, leading to a leak of sensitive information. & The mail servers should use TLSv1.3 to encrypt the traffic from getting intercepted during transit.\citep[p.~10]{tls_smtp}. 
+\\
+\hline
+\cellcolor{red!55} High  & Malicious Code injection possible(XSS, CSRF forgery) & The HTML inputs should be sanitized, set Content-security policy header, and CSRF tokens \citep[p.~75]{xss_crsf}.
+\\
+\hline
+\cellcolor{yellow!95} Medium  & Ip spoofing, DNS server spoofing, and Cache Poisoning possible.
+& Implement DNSSEC to protect the integrity of the server and turn off DNS recursion in the Bind server. \citep[p.~38]{guo2006spoof}
+\\
+\hline
+\cellcolor{yellow!95} Medium  & Server and application version is public.& Do not make server and application versions public information.
+\\
+\hline
+\cellcolor{yellow!95} Medium  & DNS server is outdated and can cause an outage of the service because of present vulnerabilities..& Update DNS bind to v9.18.12.
+\\
+\hline
+\cellcolor{grey!55} Info  & Mail server is not protected against spam and phishing.& A DMARC record in the DNS for the mail server should be included, which can validate the emails are from a genuine sender \citep[p.~7]{dmarc}.
+\\
+\hline
+\end{longtable}
+\endgroup
+
+\section{Conclusion}
+Looking at table \ref{table:key_findings}, it can be concluded that the CMS system has severe critical flaws such as non-GDPR compliance because of missing privacy policies and consent, databases that might contain sensitive personal data are with open ports in the public internet. These errors pose a significant danger to the security operations of the system from attackers. Additionally, since the system is not GDPR conform, therefore is liable to be fined for not imposing the required elements. Herefore, the website is not production ready without resolving the high and critical issues from the findings.
